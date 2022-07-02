@@ -3,26 +3,33 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| Aqui é onde você pode registrar rotas de API para seu aplicativo. Esses
+| as rotas são carregadas pelo RouteServiceProvider dentro de um grupo que
+| é atribuído ao grupo de middleware "api". Divirta-se construindo sua API!
 |
 */
+// rotal URLBASE/api/criarTokenTeste
 
 
+// chamada para criar um token com o usuario de id 1 
 Route::get('criarTokenTeste',function(){
+    //criando  o objeto do usuario sem validar login 
     $user = User::find(1);
     $token = $user->createToken('login');
     dd($token->plainTextToken);
 });
 
-
+//chamada de user com necessidade do token 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Autenticação de usuario 
+Route::post('auth',[UserController::class,'auth'])->name('auth.user'); 
