@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 
 // chamada para criar um token com o usuario de id 1 
 Route::get('criarTokenTeste',function(){
+    dd('laa'); 
     //criando  o objeto do usuario sem validar login 
     $user = User::find(1);
     $token = $user->createToken('login');
