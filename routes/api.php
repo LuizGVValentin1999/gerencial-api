@@ -26,6 +26,10 @@ Route::get('criarTokenTeste',function(){
     dd($token->plainTextToken);
 });
 
+Route::get('/teste',function(){ 
+    dd('vv2aa'); 
+    return 'ola'; 
+}); 
 //chamada de user com necessidade do token 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -33,3 +37,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Autenticação de usuario 
 Route::post('auth',[UserController::class,'auth'])->name('auth.user'); 
+
+
+Route::post('testee', function () {
+    return 'aaa';
+});
